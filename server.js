@@ -22,10 +22,11 @@ function logTailer(id){
 	// launch the log tailer
 	//
 
+	var tailcmd = 'gtail';
 	var args = ['-F'];
 	for (var i=0; i<config.log_groups[id].length; i++) args.push(config.log_groups[id][i]);
 
-	this.proc = cp.spawn('gtail', args);
+	this.proc = cp.spawn(tailcmd, args);
 
 	this.proc.stderr.on('data', function(data){
 		console.log('ERROR '+data);
